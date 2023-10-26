@@ -3,7 +3,7 @@ from pyfractal.generator import mandelbrot_sequence
 import numpy as np
 
 
-def is_in_MandelBrot(c: complex, max_iter: int) -> bool:
+def is_in_MandelBrot(c: complex, max_iter: int = 50) -> bool:
     """
     Checks if c is in Mandelbrot set.
 
@@ -21,7 +21,7 @@ def is_in_MandelBrot(c: complex, max_iter: int) -> bool:
     """
     i = 0
     over_limit = False
-    limit = 10
+    limit = 2
     for z in mandelbrot_sequence(c):
         # stop if z goes over the limit
         if abs(z) > limit:
@@ -40,6 +40,7 @@ def plot_mandelbrot(
     pixel_size: float = 1e-3,
     max_iter=50,
     figname: str = "Mandelbrot.png",
+    save: bool = True,
 ):
     """
     Creates plot of the Mandelbrot set and saves it in PNG format.
@@ -71,6 +72,8 @@ def plot_mandelbrot(
             if is_in_MandelBrot(x + y * 1j, max_iter=max_iter):
                 image[j, i, :] = 0
 
-    plt.imshow(image)
+    plt.imshow(image, extent=[zmin.real, zmax.real, zmin.imag, zmax.imag])
+    plt.title(figname)
     plt.show()
-    plt.imsave(fname=figname, arr=image)
+    if save:
+        plt.imsave(fname=figname, arr=image)
