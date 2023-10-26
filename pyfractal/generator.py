@@ -8,7 +8,7 @@ def sequence(z, c) -> complex:
     c : complex
         constant complex added
 
-    Yield   
+    Yield
     -----
     complex
         next value of the sequence
@@ -18,7 +18,7 @@ def sequence(z, c) -> complex:
         z = z**2 + c
 
 
-def mandelbrot_sequence(c:complex) -> complex:
+def mandelbrot_sequence(c: complex) -> complex:
     """
     Generator of the elements of the elements of the Mandelbrot sequence.
     Mandelbrot sequence is $z_{n+1}=z_n^2+c$ with $z_{0}=0$
@@ -28,14 +28,15 @@ def mandelbrot_sequence(c:complex) -> complex:
     c : complex
         c in the sequence $z_{n+1}=z_n^2+c$
 
-    Yield   
+    Yield
     -----
     complex
         next value of the Mandelbrot sequence
     """
     return sequence(0, c)
 
-def julia_sequence(z:complex,c=complex)-> complex:
+
+def julia_sequence(z: complex, c=complex) -> complex:
     """
     Generator of the elements of the elements of the Julia sequence.
     Julia sequence is $z_{n+1}=z_n^2+c$ with $z_{0}!=0$
@@ -44,15 +45,13 @@ def julia_sequence(z:complex,c=complex)-> complex:
     ----------
     z : complex
         $z_{0}$ in the sequence $z_{n+1}=z_n^2+c$
-    
+
     c : complex
         c in the sequence $z_{n+1}=z_n^2+c$
 
-    Yield   
+    Yield
     -----
     complex
         next value of the Julia sequence
     """
-    return sequence(z,c)
-
-print(list(sequence(3+2j,2)))
+    return sequence(z, c)
