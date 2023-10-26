@@ -40,6 +40,7 @@ def plot_mandelbrot(
     pixel_size: float = 1e-3,
     max_iter=50,
     figname: str = "Mandelbrot.png",
+    plot: bool = True,
     save: bool = True,
 ):
     """
@@ -57,6 +58,10 @@ def plot_mandelbrot(
         maximum number of iteration to go through. Default to 50
     figname : str
         name of the output PNG plot. Default to "Mandelbrot.png"
+    plot: bool
+        whether or not to plot the image in a matplotlib figure
+    save : bool
+        whether or not to save the generated image
     """
     x_size = int((zmax.real - zmin.real) / pixel_size)
     y_size = int((zmax.imag - zmin.imag) / pixel_size)
@@ -71,9 +76,9 @@ def plot_mandelbrot(
             y += pixel_size
             if is_in_MandelBrot(x + y * 1j, max_iter=max_iter):
                 image[j, i, :] = 0
-
-    plt.imshow(image, extent=[zmin.real, zmax.real, zmin.imag, zmax.imag])
-    plt.title(figname)
-    plt.show()
     if save:
         plt.imsave(fname=figname, arr=image)
+    if plot:
+        plt.imshow(image, extent=[zmin.real, zmax.real, zmin.imag, zmax.imag])
+        plt.title(figname)
+        plt.show()
