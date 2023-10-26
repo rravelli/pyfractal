@@ -63,22 +63,26 @@ def plot_mandelbrot(
     save : bool
         whether or not to save the generated image
     """
+
     x_size = int((zmax.real - zmin.real) / pixel_size)
     y_size = int((zmax.imag - zmin.imag) / pixel_size)
 
-    image = np.zeros([y_size, x_size, 3], dtype=np.uint8)
-    image.fill(255)
-    x = zmin.real
-    for i in range(x_size):
-        x += pixel_size
-        y = zmin.imag
-        for j in range(y_size):
-            y += pixel_size
-            if is_in_MandelBrot(x + y * 1j, max_iter=max_iter):
-                image[j, i, :] = 0
+    Y, X = np.ix_(np.arange(y_size), np.arange(x_size))
+
+    C = X * pixel_size + zmin.real + (Y * pixel_size + zmin.imag) * 1j
+    Z = np.zeros(C.shape)
+    for _ in range(max_iter):
+        Z = Z * Z + C
+
+    image = abs(Z) < 2
+
     if save:
         plt.imsave(fname=figname, arr=image)
     if plot:
-        plt.imshow(image, extent=[zmin.real, zmax.real, zmin.imag, zmax.imag])
+        plt.imshow(
+            image,
+            extent=[zmin.real, zmax.real, zmin.imag, zmax.imag],
+            cmap="binary",
+        )
         plt.title(figname)
         plt.show()
