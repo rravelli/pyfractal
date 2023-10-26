@@ -1,5 +1,5 @@
-def sequence(z, c) -> complex:
-    """Generator of the elements of the sequence $z_{n+1}=z_n^2+c$
+def sequence(z: complex, c: complex) -> complex:
+    """Generator of the elements of the sequence z[n+1]=z[n]²+c
 
     Parameters
     ----------
@@ -21,12 +21,12 @@ def sequence(z, c) -> complex:
 def mandelbrot_sequence(c: complex) -> complex:
     """
     Generator of the elements of the elements of the Mandelbrot sequence.
-    Mandelbrot sequence is $z_{n+1}=z_n^2+c$ with $z_{0}=0$
+    Mandelbrot sequence is z[n+1]=z[n]²+c with z[0]=0
 
     Parameters
     ----------
     c : complex
-        c in the sequence $z_{n+1}=z_n^2+c$
+        c in the sequence z[n+1]=z[n]²+c
 
     Yield
     -----
@@ -36,18 +36,18 @@ def mandelbrot_sequence(c: complex) -> complex:
     return sequence(0, c)
 
 
-def julia_sequence(z: complex, c=complex) -> complex:
+def julia_sequence(z: complex, c: complex) -> complex:
     """
     Generator of the elements of the elements of the Julia sequence.
-    Julia sequence is $z_{n+1}=z_n^2+c$ with $z_{0}!=0$
+    Julia sequence is z[n+1]=z[n]²+c with z[0]!=0
 
     Parameters
     ----------
     z : complex
-        $z_{0}$ in the sequence $z_{n+1}=z_n^2+c$
+        z[0] in the sequence z[n+1]=z[n]²+c
 
     c : complex
-        c in the sequence $z_{n+1}=z_n^2+c$
+        c in the sequence z[n+1]=z[n]²+c
 
     Yield
     -----
