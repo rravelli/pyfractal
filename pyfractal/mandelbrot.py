@@ -4,6 +4,21 @@ import numpy as np
 
 
 def is_in_MandelBrot(c: complex, max_iter: int) -> bool:
+    """
+    Checks if c is in Mandelbrot set.
+
+    Parameters
+    ----------
+    c : complex
+        complex to be checked
+    max_iter : int
+        maximum number of iteration to go through
+
+    Returns
+    -------
+    bool
+        True if c is member of the Mandelbrot set, False otherwise
+    """
     i = 0
     over_limit = False
     limit = 10
@@ -12,7 +27,7 @@ def is_in_MandelBrot(c: complex, max_iter: int) -> bool:
         if abs(z) > limit:
             over_limit = True
             break
-        # stop if i go over mex iteration
+        # stop if i go over max iteration
         if i > max_iter:
             break
         i += 1
@@ -26,6 +41,22 @@ def plot_mandelbrot(
     max_iter=50,
     figname: str = "Mandelbrot.png",
 ):
+    """
+    Creates plot of the Mandelbrot set and saves it in PNG format.
+
+    Parameters
+    ----------
+    zmin : complex
+        min affix in the plot. Default to -2-1j
+    zmax : int
+        max affix in the plot. Default to 1+1j
+    pixel_size : float
+        size of a pixel on the plot. Default to 1e-3
+    max_iter : int
+        maximum number of iteration to go through. Default to 50
+    figname : str
+        name of the output PNG plot. Default to "Mandelbrot.png"
+    """
     x_size = int((zmax.real - zmin.real) / pixel_size)
     y_size = int((zmax.imag - zmin.imag) / pixel_size)
 
