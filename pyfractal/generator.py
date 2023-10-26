@@ -54,3 +54,5 @@ def julia_sequence(z:complex,c=complex)-> complex:
         next value of the Julia sequence
     """
     return sequence(z,c)
+
+print(list(sequence(3+2j,2)))
