@@ -29,7 +29,7 @@ def is_in_Julia(c: complex, z: complex, max_iter: int = 50) -> bool:
         if abs(z) > limit:
             over_limit = True
             break
-        # stop if i go over max iteration
+        # stop if i goes over max iteration
         if i > max_iter:
             break
         i += 1

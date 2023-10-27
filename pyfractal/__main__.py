@@ -1,8 +1,9 @@
-# Contenu de __main__.py
-"""Main call to helloworld. Mostly a parser."""
+import warnings
 import argparse
 from pyfractal.mandelbrot import plot_mandelbrot
 from pyfractal.julia import plot_julia
+
+# Command line functions
 
 
 def cli_plot_mandelbrot():
@@ -52,16 +53,17 @@ def cli_plot_mandelbrot():
     )
 
     args = parser.parse_args()
-
-    plot_mandelbrot(
-        zmin=args.zmin,
-        zmax=args.zmax,
-        pixel_size=args.pixel_size,
-        max_iter=args.max_iter,
-        figname=args.origin,
-        save=True,
-        plot=True,
-    )
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        plot_mandelbrot(
+            zmin=args.zmin,
+            zmax=args.zmax,
+            pixel_size=args.pixel_size,
+            max_iter=args.max_iter,
+            figname=args.origin,
+            save=True,
+            plot=True,
+        )
 
 
 def cli_plot_julia():
@@ -119,13 +121,15 @@ def cli_plot_julia():
 
     args = parser.parse_args()
 
-    plot_julia(
-        c=args.c,
-        zmin=args.zmin,
-        zmax=args.zmax,
-        pixel_size=args.pixel_size,
-        max_iter=args.max_iter,
-        figname=args.origin,
-        save=True,
-        plot=True,
-    )
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        plot_julia(
+            c=args.c,
+            zmin=args.zmin,
+            zmax=args.zmax,
+            pixel_size=args.pixel_size,
+            max_iter=args.max_iter,
+            figname=args.origin,
+            save=True,
+            plot=True,
+        )
