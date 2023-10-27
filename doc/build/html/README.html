@@ -1,0 +1,185 @@
+
+
+<!doctype html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pyfractal &#8212; pyfractal 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=532c1bf3" />
+    
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyfractal" href="modules.html" />
+    <link rel="prev" title="Welcome to pyfractal’s documentation!" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="pyfractal"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to pyfractal’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyfractal 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Pyfractal</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pyfractal">
+<h1>Pyfractal<a class="headerlink" href="#pyfractal" title="Link to this heading">¶</a></h1>
+<p>Pyfractal is a Python library which provides several function about the Mandelbrot and Julia sets. It enables you to create plots of the sets, exporting a PNG image.</p>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
+<p>The following libraries are needed in order for Pyfractal to work : numpy, matplotlib.  //see with rémi the setup
+If you want to run the tests, Pytest is also necessary.</p>
+<p>Once you cloned the current Git repository, go where the file setup.py is located and run the following command  :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h1>
+<section id="in-scripts">
+<h2>In scripts<a class="headerlink" href="#in-scripts" title="Link to this heading">¶</a></h2>
+<p>You can directly use the provided functions in your scripts, for instance if you want a default and a custom plot of the Mandelbrot set :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfractal.mandelbrot</span> <span class="kn">import</span> <span class="n">plot_mandelbrot</span>
+<span class="n">plot_mandelbrot</span><span class="p">()</span> <span class="c1">#default version</span>
+<span class="n">plot_mandelbrot</span><span class="p">(</span><span class="n">zmin</span><span class="o">=-</span><span class="mf">0.7440</span><span class="o">+</span><span class="mf">0.1305</span><span class="n">j</span><span class="p">,</span>
+                <span class="n">zmax</span><span class="o">=-</span><span class="mf">0.7425</span><span class="o">+</span><span class="mf">0.1320</span><span class="n">j</span><span class="p">,</span>
+                <span class="n">pixel_size</span><span class="o">=</span><span class="mf">5e-7</span><span class="p">,</span>
+                <span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                <span class="n">figname</span><span class="o">=</span><span class="s2">&quot;Mandelbrot_tentacle.png&quot;</span><span class="p">)</span> <span class="c1">#custom version</span>
+</pre></div>
+</div>
+<p>This will export the two PNG image below in your current directory (one per function called) : “Mandelbrot.png” and “Mandelbrot_tentacle.png” :</p>
+<p><img alt="Mandelbrot.png" src="Ex_images/Mandelbrot.png" /></p>
+<p><img alt="Mandelbrot_tentacle.png" src="Ex_images/Mandelbrot_tentacle.png" /></p>
+<p>Plotting the Julia set is basically the same logic, there is just an additional optional parameter (c, see documentation).</p>
+</section>
+<section id="in-commmand-lines">
+<h2>In Commmand lines<a class="headerlink" href="#in-commmand-lines" title="Link to this heading">¶</a></h2>
+<p>You can get the same results using command lines, like below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ MandelbrotPlot -o &quot;Mandelbrot.png&quot;
+$ MandelbrotPlot --zmin=-0.7440+0.1305j\
+                --zmax=-0.7425+0.1320j \
+                --pixel_size=5e-7\
+                --max-iter=200\
+                -o &quot;Mandelbrot_tentacle.png&quot;
+</pre></div>
+</div>
+<p>To plot the Julia set, the command line is :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ JuliaPlot -o &quot;Juliaplot.png&quot;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h1>
+<p>The Documentation for Pyfractal is available in ./doc/build/html. Once you are in this folder, on can run the following line to access the full documentation on your navigator :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Pyfractal</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#in-scripts">In scripts</a></li>
+<li><a class="reference internal" href="#in-commmand-lines">In Commmand lines</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to pyfractal’s documentation!</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="modules.html"
+                          title="next chapter">pyfractal</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/README.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="pyfractal"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to pyfractal’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyfractal 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Pyfractal</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2023, Rémi Ravelli, Manon Coutier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>
